@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+  font-weight: bold;
+}
+
+.logo {
+  width: 50%;
+  max-width: 500px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.start-here-button {
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 7px;
+  border: none;
+  font-weight: bold;
+}
