@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPA Calculator</title>
+    <link rel="stylesheet" href="/styles/gpa-calculator.css" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+  </head>
+  <body>
+    <nav>
+      <div class="left-nav-section">
+        <a href="/pages/home.html"
+          ><img
+            src="/assets/logo.png"
+            alt="college launchpad logo"
+            class="logo"
+          />
+        </a>
+      </div>
+
+      <div class="right-nav-section">
+        <a href="/pages/home.html">Home</a>
+        <a href="#">GPA Calc.</a>
+        <a href="">College Finder</a>
+        <a href="">Scholarships</a>
+      </div>
+    </nav>
+
+    <main>
+      <h1>GPA Calculator</h1>
+      <form action="">
+        <div class="form-container">
+          <div class="form-row">
+            <label for="course-name">Course name:</label>
+            <input
+              type="text"
+              name="course-name"
+              id="course-name"
+              placeholder="Math"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="grade">Grade:</label>
+            <select name="grade" id="grade">
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="credit-hours">Credit hours:</label>
+            <input
+              type="number"
+              name="credit-hours"
+              id="credit-hours"
+              placeholder="1.0"
+            />
+          </div>
+        </div>
+        <div class="buttons-container">
+          <button class="add-course-button">Add course</button>
+          <button class="calculate-button">Calculate</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
