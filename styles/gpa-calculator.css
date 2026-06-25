@@ -5,15 +5,17 @@ body {
 
 nav {
   background-color: blue;
-  padding: 10px 5px;
+  padding: 2px 5px;
   display: flex;
   justify-content: space-between;
+  gap: 50px;
 }
 
 nav a {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  font-size: 12px;
 }
 
 main {
@@ -31,7 +33,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 70%;
+  width: 80%;
   max-width: 800px;
 }
 
@@ -42,7 +44,7 @@ form {
 }
 
 .logo {
-  width: 50px;
+  width: 35px;
   border-radius: 25px;
 }
 
@@ -54,8 +56,12 @@ form {
 
 .form-row {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 110px 1fr;
   align-items: center;
+}
+
+input {
+  width: 100%;
 }
 
 .buttons-container {
