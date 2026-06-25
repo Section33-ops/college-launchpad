@@ -85,3 +85,12 @@ button {
 .calculate-button {
   background-color: lime;
 }
+
+table,
+th,
+td {
+  border: 2px solid blue;
+  border-collapse: collapse;
+  text-align: center;
+  padding: 10px;
+}
