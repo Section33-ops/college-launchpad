@@ -2,22 +2,43 @@ const courseNameInput = document.getElementById('course-name');
 const gradeInput = document.getElementById('grade');
 const creditHoursInput = document.getElementById('credit-hours');
 const addCourseButton = document.getElementById('add-course-button');
+const courseRows = document.getElementById('course-rows');
 
 const courses = [];
 
-addCourseButton.addEventListener('click', (event) => {
-  event.preventDefault();
-  courses.push({
-    course: courseNameInput.value,
-    grade: gradeInput.value,
-    creditHours: creditHoursInput.value,
-  });
+function addCourseToTable(newCourse) {
+  courseRows.insertAdjacentHTML(
+    'beforeend',
+    `
+    <tr>
+      <td>${newCourse.course}</td>
+      <td>${newCourse.grade}</td>
+      <td>${newCourse.creditHours}</td>
+    </tr>
+  `,
+  );
+}
+
+function clearInputFields() {
   courseNameInput.value = '';
   gradeInput.value = 'A';
   creditHoursInput.value = '';
-  // console.log(courses);
+}
 
-  for (const course of courses) {
-    console.log(course.course);
-  }
+addCourseButton.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  const newCourse = {
+    course: courseNameInput.value,
+    grade: gradeInput.value,
+    creditHours: creditHoursInput.value,
+  };
+
+  courses.push(newCourse);
+
+  addCourseToTable(newCourse);
+
+  clearInputFields();
+
+  console.log(courses);
 });
