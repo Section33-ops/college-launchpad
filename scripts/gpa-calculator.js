@@ -4,6 +4,7 @@ const creditHoursInput = document.getElementById('credit-hours');
 const addCourseButton = document.getElementById('add-course-button');
 const calculateButton = document.getElementById('js-calculate-button');
 const courseRows = document.getElementById('course-rows');
+const inputFeedback = document.getElementById('js-input-feedback');
 
 const courses = [];
 
@@ -71,6 +72,18 @@ addCourseButton.addEventListener('click', (event) => {
     creditHours: creditHoursInput.value,
   };
 
+  if (!courseNameInput.value && !creditHoursInput.value) {
+    inputFeedback.innerHTML = 'Please enter a course and credit hours';
+    return;
+  }
+  if (!courseNameInput.value) {
+    inputFeedback.innerHTML = 'Please enter a course';
+    return;
+  }
+  if (!creditHoursInput.value) {
+    inputFeedback.innerHTML = 'Please enter credit hours';
+    return;
+  }
   courses.push(newCourse);
 
   addCourseToTable(newCourse);
