@@ -18,6 +18,10 @@ nav a {
   font-size: 12px;
 }
 
+h1 {
+  text-align: center;
+}
+
 .right-nav-section {
   display: flex;
   gap: 10px;
@@ -27,4 +31,44 @@ nav a {
 .logo {
   width: 35px;
   border-radius: 25px;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 10%;
+}
+
+.card {
+  border: 2px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  max-width: 600px;
+  border-radius: 20px;
+}
+
+.button {
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .card-container {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
 }
