@@ -13,3 +13,60 @@ section {
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 600px) {
+  table thead {
+    display: none;
+  }
+
+  table {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    border: none !important;
+  }
+
+  table tbody,
+  table tr,
+  table td {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  table tr {
+    margin: 0 0 20px 0;
+    padding: 12px;
+    border: 1px solid #ddd !important;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  table td {
+    text-align: left;
+    padding: 35px 10px 10px 10px !important;
+    position: relative;
+    border: none !important;
+    border-bottom: 1px dashed #eee !important;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  table td:last-child {
+    border-bottom: 0 !important;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    color: #444;
+    white-space: normal;
+  }
+}

@@ -7,10 +7,10 @@ function addScholarshipToTable(scholarshipList) {
 
   scholarshipList.forEach((scholarship) => {
     scholarshipHtml += `<tr>
-      <td>${scholarship.name}</td>
-      <td>${scholarship.description}</td>
-      <td>${scholarship.minGPA}</td>
-      <td>${scholarship.amount}</td>
+      <td data-label="Name">${scholarship.name}</td>
+      <td data-label="Description">${scholarship.description}</td>
+      <td data-label="Min GPA">${scholarship.minGPA}</td>
+      <td data-label="Amount">${scholarship.amount}</td>
     </tr>`;
   });
   return scholarshipHtml;
