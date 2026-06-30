@@ -7,10 +7,10 @@ function addCollegesToTable(collegeList) {
 
   collegeList.forEach((college) => {
     collegeHtml += `<tr>
-      <td>${college.name}</td>
-      <td>${college.city}, ${college.state}</td>
-      <td>${college.avgGPA}</td>
-      <td>${college.programs}</td>
+      <td data-label="College Name">${college.name}</td>
+      <td data-label="Location">${college.city}, ${college.state}</td>
+      <td data-label="Average GPA">${college.avgGPA}</td>
+      <td data-label="Programs">${college.programs}</td>
     </tr>`;
   });
   return collegeHtml;
