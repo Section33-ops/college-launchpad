@@ -1,3 +1,10 @@
+import {
+  addCourseToTable,
+  clearInputFields,
+  calculateGPA,
+  checkUserInput,
+} from './modules/gpaCalculatorFunctions.js';
+
 const courseNameInput = document.getElementById('course-name');
 const gradeInput = document.getElementById('grade');
 const creditHoursInput = document.getElementById('credit-hours');
@@ -15,77 +22,6 @@ const gradeScale = {
   D: 1.0,
   F: 0.0,
 };
-
-function addCourseToTable(newCourse) {
-  courseRows.insertAdjacentHTML(
-    'beforeend',
-    `
-    <tr>
-      <td>${newCourse.course}</td>
-      <td>${newCourse.grade}</td>
-      <td>${newCourse.creditHours}</td>
-    </tr>
-  `,
-  );
-  courses.push(newCourse);
-  clearInputFields();
-}
-
-function clearInputFields() {
-  courseNameInput.value = '';
-  gradeInput.value = 'A';
-  creditHoursInput.value = '';
-}
-
-function calculateGPA(courses) {
-  const coursesWithGradeValue = [];
-  let gradeLetter = '';
-  let totalPoints = 0;
-  let totalCredit = 0;
-  let gpa = 0;
-
-  courses.forEach((course) => {
-    gradeLetter = course.grade;
-    coursesWithGradeValue.push({ ...course, grade: gradeScale[gradeLetter] });
-  });
-
-  coursesWithGradeValue.forEach((course) => {
-    totalPoints += course.grade * course.creditHours;
-    totalCredit += Number(course.creditHours);
-  });
-
-  gpa = totalPoints / totalCredit;
-
-  console.log(coursesWithGradeValue);
-  console.log(totalPoints);
-  console.log(totalCredit);
-  console.log(gpa);
-
-  document.getElementById('gpa-result').innerHTML = `Your GPA is ${gpa}`;
-  return `Your GPA is ${gpa}`;
-}
-
-function checkUserInput(
-  courseNameInput,
-  creditHoursInput,
-  inputFeedback,
-  newCourse,
-) {
-  if (!courseNameInput.value && !creditHoursInput.value) {
-    inputFeedback.innerHTML = 'Please enter a course and credit hours';
-    return false;
-  }
-  if (!courseNameInput.value) {
-    inputFeedback.innerHTML = 'Please enter a course';
-    return false;
-  }
-  if (!creditHoursInput.value) {
-    inputFeedback.innerHTML = 'Please enter credit hours';
-    return false;
-  }
-
-  return true;
-}
 
 addCourseButton.addEventListener('click', (event) => {
   event.preventDefault();
@@ -106,7 +42,14 @@ addCourseButton.addEventListener('click', (event) => {
   ) {
     return false;
   }
-  addCourseToTable(newCourse);
+  addCourseToTable(
+    courseRows,
+    courses,
+    newCourse,
+    courseNameInput,
+    gradeInput,
+    creditHoursInput,
+  );
 
   console.log(courses);
 });
@@ -114,5 +57,5 @@ addCourseButton.addEventListener('click', (event) => {
 calculateButton.addEventListener('click', (event) => {
   event.preventDefault();
 
-  calculateGPA(courses);
+  calculateGPA(courses, gradeScale);
 });
