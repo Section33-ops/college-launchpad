@@ -27,6 +27,8 @@ function addCourseToTable(newCourse) {
     </tr>
   `,
   );
+  courses.push(newCourse);
+  clearInputFields();
 }
 
 function clearInputFields() {
@@ -63,6 +65,28 @@ function calculateGPA(courses) {
   return `Your GPA is ${gpa}`;
 }
 
+function checkUserInput(
+  courseNameInput,
+  creditHoursInput,
+  inputFeedback,
+  newCourse,
+) {
+  if (!courseNameInput.value && !creditHoursInput.value) {
+    inputFeedback.innerHTML = 'Please enter a course and credit hours';
+    return false;
+  }
+  if (!courseNameInput.value) {
+    inputFeedback.innerHTML = 'Please enter a course';
+    return false;
+  }
+  if (!creditHoursInput.value) {
+    inputFeedback.innerHTML = 'Please enter credit hours';
+    return false;
+  }
+
+  return true;
+}
+
 addCourseButton.addEventListener('click', (event) => {
   event.preventDefault();
 
@@ -72,23 +96,17 @@ addCourseButton.addEventListener('click', (event) => {
     creditHours: creditHoursInput.value,
   };
 
-  if (!courseNameInput.value && !creditHoursInput.value) {
-    inputFeedback.innerHTML = 'Please enter a course and credit hours';
-    return;
+  if (
+    checkUserInput(
+      courseNameInput,
+      creditHoursInput,
+      inputFeedback,
+      newCourse,
+    ) === false
+  ) {
+    return false;
   }
-  if (!courseNameInput.value) {
-    inputFeedback.innerHTML = 'Please enter a course';
-    return;
-  }
-  if (!creditHoursInput.value) {
-    inputFeedback.innerHTML = 'Please enter credit hours';
-    return;
-  }
-  courses.push(newCourse);
-
   addCourseToTable(newCourse);
-
-  clearInputFields();
 
   console.log(courses);
 });
