@@ -2,7 +2,7 @@ import { apiKey } from './config.js';
 
 export async function fetchCollege(state, city) {
   const colleges = [];
-  const url = `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=${apiKey}&school.state=${state}&school.city=${city}`;
+  const url = getUrl(state, city);
   try {
     const response = await fetch(url);
 
@@ -33,4 +33,20 @@ export async function fetchCollege(state, city) {
     console.log(error);
     return [];
   }
+}
+
+function getUrl(state, city) {
+  let baseUrl = `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=${apiKey}`;
+  if (state && city) {
+    baseUrl += `&school.state=${state}&school.city=${city}`;
+    return baseUrl;
+  }
+  if (state) {
+    baseUrl += `&school.state=${state}`;
+  }
+  if (city) {
+    baseUrl += `&school.city=${city}`;
+  }
+
+  return baseUrl;
 }
