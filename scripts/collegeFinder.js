@@ -27,5 +27,9 @@ searchButton.addEventListener('click', async () => {
   const stateSearchInput = document.querySelector('#js-state-search-box').value;
   const citySearchInput = document.querySelector('#js-city-search-box').value;
   const colleges2 = await fetchCollege(stateSearchInput, citySearchInput);
-  tableBody.innerHTML = addCollegesToTable(colleges2);
+  if (colleges2) {
+    tableBody.innerHTML = addCollegesToTable(colleges2);
+  } else {
+    tableBody.innerHTML = addCollegesToTable(colleges);
+  }
 });
