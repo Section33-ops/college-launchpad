@@ -1,5 +1,5 @@
 import { colleges } from '../data/colleges.js';
-import { fetchCollege } from './collegeApi.js';
+// import { fetchCollege } from './collegeApi.js';
 
 const tableBody = document.getElementById('js-college-rows');
 
@@ -34,9 +34,33 @@ searchButton.addEventListener('click', async () => {
   }
 });
 
+function fetchUrl() {
+  const stateInput = document.querySelector('#js-state-search-box').value;
+  const cityInput = document.querySelector('#js-city-search-box').value;
+  let baseUrl = `http://localhost:8080/colleges`;
+  if (stateInput && cityInput) {
+    baseUrl += `?stateParam=${stateInput}&cityParam=${cityInput}`;
+    console.log(baseUrl);
+    return baseUrl;
+  }
+  if (stateInput) {
+    baseUrl += `?stateParam=${stateInput}`;
+    console.log(baseUrl);
+    return baseUrl;
+  }
+  if (cityInput) {
+    baseUrl += `?cityParam=${cityInput}`;
+    console.log(baseUrl);
+    return baseUrl;
+  }
+
+  console.log(baseUrl);
+  return baseUrl;
+}
+
 async function getColleges() {
   try {
-    const response = await fetch('http://localhost:8080/colleges');
+    const response = await fetch(fetchUrl());
 
     if (!response.ok) {
       throw new Error('Could not fetch resource');
