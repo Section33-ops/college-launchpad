@@ -26,10 +26,26 @@ document.addEventListener('DOMContentLoaded', () => {
 searchButton.addEventListener('click', async () => {
   const stateSearchInput = document.querySelector('#js-state-search-box').value;
   const citySearchInput = document.querySelector('#js-city-search-box').value;
-  const colleges2 = await fetchCollege(stateSearchInput, citySearchInput);
+  const colleges2 = await getColleges();
   if (colleges2) {
     tableBody.innerHTML = addCollegesToTable(colleges2);
   } else {
     tableBody.innerHTML = addCollegesToTable(colleges);
   }
 });
+
+async function getColleges() {
+  try {
+    const response = await fetch('http://localhost:8080/colleges');
+
+    if (!response.ok) {
+      throw new Error('Could not fetch resource');
+    }
+
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
