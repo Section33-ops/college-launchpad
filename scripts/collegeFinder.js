@@ -37,7 +37,7 @@ searchButton.addEventListener('click', async () => {
 function fetchUrl() {
   const stateInput = document.querySelector('#js-state-search-box').value;
   const cityInput = document.querySelector('#js-city-search-box').value;
-  let baseUrl = `http://localhost:8080/colleges`;
+  let baseUrl = `https://college-launchpad-backend.onrender.com/colleges`;
   if (stateInput && cityInput) {
     baseUrl += `?stateParam=${stateInput}&cityParam=${cityInput}`;
     console.log(baseUrl);
