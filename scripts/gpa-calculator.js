@@ -57,5 +57,8 @@ addCourseButton.addEventListener('click', (event) => {
 calculateButton.addEventListener('click', (event) => {
   event.preventDefault();
 
+  if (courses.length === 0) {
+    return;
+  }
   calculateGPA(courses, gradeScale);
 });
