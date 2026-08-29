@@ -69,6 +69,9 @@ export function checkUserInput(
   inputFeedback,
   newCourse,
 ) {
+  if (courseNameInput.value && creditHoursInput.value) {
+    inputFeedback.innerHTML = '';
+  }
   if (!courseNameInput.value && !creditHoursInput.value) {
     inputFeedback.innerHTML = 'Please enter a course and credit hours';
     return false;
