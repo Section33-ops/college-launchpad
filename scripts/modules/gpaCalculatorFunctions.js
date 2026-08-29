@@ -50,7 +50,8 @@ export function calculateGPA(courses, gradeScale) {
   if (totalCredit === 0) {
     gpa = 0.0;
   } else {
-    gpa = totalPoints / totalCredit;
+    const calculatedGpa = totalPoints / totalCredit;
+    gpa = calculatedGpa.toFixed(2);
   }
 
   console.log(coursesWithGradeValue);
