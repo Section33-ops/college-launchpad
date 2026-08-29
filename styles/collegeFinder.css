@@ -17,6 +17,16 @@ section {
   margin-bottom: 10%;
 }
 
+.hidden {
+  display: none;
+}
+
+.loading {
+  font-weight: bold;
+  font-size: 3.5rem;
+  text-align: center;
+}
+
 @media screen and (max-width: 600px) {
   table thead {
     display: none;

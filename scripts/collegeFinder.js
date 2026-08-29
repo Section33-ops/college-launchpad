@@ -4,6 +4,10 @@ import { colleges } from '../data/colleges.js';
 const tableBody = document.getElementById('js-college-rows');
 
 const searchButton = document.querySelector('#js-search-button');
+const collegeListTable = document.querySelector('.college-table');
+const loadingText = document.querySelector('.loading');
+
+let isLoading = false;
 
 function addCollegesToTable(collegeList) {
   let collegeHtml = '';
@@ -28,6 +32,10 @@ searchButton.addEventListener('click', async () => {
   const citySearchInput = document.querySelector('#js-city-search-box').value;
   const colleges2 = await getColleges();
   if (colleges2) {
+    isLoading = false;
+    loadingText.classList.add('hidden');
+    collegeListTable.classList.remove('hidden');
+
     tableBody.innerHTML = addCollegesToTable(colleges2);
   } else {
     tableBody.innerHTML = addCollegesToTable(colleges);
@@ -60,6 +68,10 @@ function fetchUrl() {
 
 async function getColleges() {
   try {
+    isLoading = true;
+    collegeListTable.classList.add('hidden');
+    loadingText.classList.remove('hidden');
+
     const response = await fetch(fetchUrl());
 
     if (!response.ok) {
