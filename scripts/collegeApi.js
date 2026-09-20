@@ -1,73 +1,34 @@
-// import { apiKey } from './config.js';
+function fetchUrl() {
+  const stateInput = document.querySelector('#js-state-search-box').value;
+  const cityInput = document.querySelector('#js-city-search-box').value;
+  let baseUrl = `https://college-launchpad-backend.onrender.com/colleges`;
 
-import { colleges } from '../data/colleges.js';
+  const url = new URL(baseUrl);
 
-let apiKey = null;
+  if (stateInput) url.searchParams.set('stateParam', stateInput);
+  if (cityInput) url.searchParams.set('cityParam', cityInput);
 
-async function loadApiKey() {
+  return url.toString();
+}
+
+export async function getColleges() {
+  const collegeListTable = document.querySelector('.college-table');
+  const loadingText = document.querySelector('.loading');
+
   try {
-    const configFile = await import('./config.js');
-    apiKey = configFile.apiKey;
-    return apiKey;
-  } catch (error) {
-    apiKey = null;
-    return apiKey;
-  }
-}
+    collegeListTable.classList.add('hidden');
+    loadingText.classList.remove('hidden');
 
-loadApiKey();
+    const response = await fetch(fetchUrl());
 
-export async function fetchCollege(state, city) {
-  if (apiKey) {
-    const colleges = [];
-    const url = getUrl(state, city);
-    try {
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error('Could not fetch resource');
-      }
-
-      const data = await response.json();
-
-      data.results.forEach((college) => {
-        colleges.push({
-          id: college.school.id,
-          name: college.school.name,
-          zipCode: college.school.zip,
-          city: college.school.city,
-          state: college.school.state,
-          avgGPA: 'not available',
-          programs: 'not available',
-        });
-      });
-
-      // console.log(colleges);
-      console.log(data);
-      console.log('   ');
-      console.log(data.results);
-      return colleges;
-    } catch (error) {
-      console.log(error);
-      return [];
+    if (!response.ok) {
+      throw new Error('Could not fetch resource');
     }
-  } else {
-    return null;
-  }
-}
 
-function getUrl(state, city) {
-  let baseUrl = `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=${apiKey}`;
-  if (state && city) {
-    baseUrl += `&school.state=${state}&school.city=${city}`;
-    return baseUrl;
+    const data = await response.json();
+    console.log(data);
+    return data.colleges;
+  } catch (error) {
+    console.log(error);
   }
-  if (state) {
-    baseUrl += `&school.state=${state}`;
-  }
-  if (city) {
-    baseUrl += `&school.city=${city}`;
-  }
-
-  return baseUrl;
 }
