@@ -80,7 +80,7 @@ async function getColleges() {
 
     const data = await response.json();
     console.log(data);
-    return data;
+    return data.colleges;
   } catch (error) {
     console.log(error);
   }
