@@ -32,3 +32,60 @@ export async function getColleges() {
     console.log(error);
   }
 }
+
+let currentPage = 0;
+export async function nextPage() {
+  currentPage += 1;
+
+  const url = new URL(fetchUrl());
+  url.searchParams.set('pageParam', currentPage);
+  console.log(url.toString());
+
+  const collegeListTable = document.querySelector('.college-table');
+  const loadingText = document.querySelector('.loading');
+
+  try {
+    collegeListTable.classList.add('hidden');
+    loadingText.classList.remove('hidden');
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error('Could not fetch resource');
+    }
+
+    const data = await response.json();
+    console.log(data.metaData);
+    return data.colleges;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function previousPage() {
+  currentPage -= 1;
+
+  const url = new URL(fetchUrl());
+  url.searchParams.set('pageParam', currentPage);
+  console.log(url.toString());
+
+  const collegeListTable = document.querySelector('.college-table');
+  const loadingText = document.querySelector('.loading');
+
+  try {
+    collegeListTable.classList.add('hidden');
+    loadingText.classList.remove('hidden');
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error('Could not fetch resource');
+    }
+
+    const data = await response.json();
+    console.log(data.metaData);
+    return data.colleges;
+  } catch (error) {
+    console.log(error);
+  }
+}

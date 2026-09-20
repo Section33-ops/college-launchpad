@@ -1,11 +1,13 @@
 import { colleges } from '../data/colleges.js';
-import { getColleges } from './collegeApi.js';
+import { getColleges, nextPage, previousPage } from './collegeApi.js';
 
 const tableBody = document.getElementById('js-college-rows');
 
 const searchButton = document.querySelector('#js-search-button');
 const collegeListTable = document.querySelector('.college-table');
 const loadingText = document.querySelector('.loading');
+const nextPageBtn = document.querySelector('#js-nxt-btn');
+const previousPageBtn = document.querySelector('#js-prev-btn');
 
 let isLoading = false;
 
@@ -36,6 +38,28 @@ searchButton.addEventListener('click', async () => {
 
     tableBody.innerHTML = addCollegesToTable(colleges);
   } else {
+    tableBody.innerHTML = addCollegesToTable(colleges);
+  }
+});
+
+nextPageBtn.addEventListener('click', async () => {
+  const colleges = await nextPage();
+  if (colleges) {
+    isLoading = false;
+    loadingText.classList.add('hidden');
+    collegeListTable.classList.remove('hidden');
+
+    tableBody.innerHTML = addCollegesToTable(colleges);
+  }
+});
+
+previousPageBtn.addEventListener('click', async () => {
+  const colleges = await previousPage();
+  if (colleges) {
+    isLoading = false;
+    loadingText.classList.add('hidden');
+    collegeListTable.classList.remove('hidden');
+
     tableBody.innerHTML = addCollegesToTable(colleges);
   }
 });
