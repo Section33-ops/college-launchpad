@@ -28,15 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 searchButton.addEventListener('click', async () => {
-  const stateSearchInput = document.querySelector('#js-state-search-box').value;
-  const citySearchInput = document.querySelector('#js-city-search-box').value;
-  const colleges2 = await getColleges();
-  if (colleges2) {
+  const colleges = await getColleges();
+  if (colleges) {
     isLoading = false;
     loadingText.classList.add('hidden');
     collegeListTable.classList.remove('hidden');
 
-    tableBody.innerHTML = addCollegesToTable(colleges2);
+    tableBody.innerHTML = addCollegesToTable(colleges);
   } else {
     tableBody.innerHTML = addCollegesToTable(colleges);
   }
