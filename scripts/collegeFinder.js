@@ -46,24 +46,13 @@ function fetchUrl() {
   const stateInput = document.querySelector('#js-state-search-box').value;
   const cityInput = document.querySelector('#js-city-search-box').value;
   let baseUrl = `https://college-launchpad-backend.onrender.com/colleges`;
-  if (stateInput && cityInput) {
-    baseUrl += `?stateParam=${stateInput}&cityParam=${cityInput}`;
-    console.log(baseUrl);
-    return baseUrl;
-  }
-  if (stateInput) {
-    baseUrl += `?stateParam=${stateInput}`;
-    console.log(baseUrl);
-    return baseUrl;
-  }
-  if (cityInput) {
-    baseUrl += `?cityParam=${cityInput}`;
-    console.log(baseUrl);
-    return baseUrl;
-  }
 
-  console.log(baseUrl);
-  return baseUrl;
+  const url = new URL(baseUrl);
+
+  if (stateInput) url.searchParams.set('stateParam', stateInput);
+  if (cityInput) url.searchParams.set('cityParam', cityInput);
+
+  return url.toString();
 }
 
 async function getColleges() {
